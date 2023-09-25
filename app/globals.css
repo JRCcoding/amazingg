@@ -1,3 +1,8 @@
 * {
   margin: 0;
 }
+
+:root {
+  --off-white: #f0f0f0;
+  --off-orange: rgb(255, 240, 213);
+}
