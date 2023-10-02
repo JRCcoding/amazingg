@@ -1,0 +1,15 @@
+.main-home {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+}
+
+.gloria-card {
+    border-radius: 10px;
+    border: 1px solid var(--off-orange);
+    box-shadow: 1px 1px 10px gray;
+    padding: 2% 5%;
+    margin: 5% 25%;
+}

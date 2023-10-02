@@ -3,6 +3,10 @@
 }
 
 :root {
-  --off-white: #f0f0f0;
-  --off-orange: rgb(255, 240, 213);
+  --off-white: #f2f2f2;
+  --off-orange: #FF862F;
+  --green: #457324;
+}
+
+body {
 }
