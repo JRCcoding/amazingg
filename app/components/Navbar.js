@@ -117,11 +117,6 @@ const Navbar = () => {
         )}
         {openDropdown === 'Green' && (
           <ul className='dropdown'>
-            <li>Tops</li>
-            <li>Bottoms</li>
-            <li>Outfits</li>
-            <li>Shoes</li>
-            <li>Jewelry</li>
           </ul>
         )}
       </div>
