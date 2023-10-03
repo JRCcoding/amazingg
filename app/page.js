@@ -8,7 +8,7 @@ export default function Home() {
       <Navbar />
       <ProductCarousel />
       <main className='main-home'>
-        <div className='gloria-card'>
+        <div className='about-card'>
           <h2>About Us</h2>
           <p>
             Amazing G is more than a store for us. It is more than an online
