@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './components.css'
 import { BsFillCartFill, BsFillPersonFill } from 'react-icons/bs'
 
@@ -9,6 +9,14 @@ const Navbar = () => {
   const [search, setSearch] = useState('Search...')
 
   const [openDropdown, setOpenDropdown] = useState(null)
+
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    if (window.innerWidth <= 501) {
+      setIsMobile(true)
+    }
+  }, [])
 
   const handleDropdownToggle = (dropdownName) => {
     if (openDropdown === dropdownName) {
@@ -51,14 +59,16 @@ const Navbar = () => {
             onBlur={handleInputAbort}
           />
         </div>
-        <div className='icons'>
+        <div className='icons' hidden={isMobile}>
           <BsFillCartFill className='icon' />
           <BsFillPersonFill className='icon' />
         </div>
       </nav>
       <div className='links-container'>
         <ul className='links-list'>
-          <li onClick={() => handleDropdownToggle(null)}>Home</li>
+          <li onClick={() => handleDropdownToggle(null)} hidden={isMobile}>
+            Home
+          </li>
           <li onClick={() => handleDropdownToggle('Women')}>Women</li>
 
           <li onClick={() => handleDropdownToggle('Men')}>Men</li>
@@ -68,9 +78,18 @@ const Navbar = () => {
           <li
             style={{ color: 'green', fontWeight: 'bold' }}
             onClick={() => handleDropdownToggle('Green')}
+            hidden={isMobile}
           >
             GREEN
           </li>
+          <div hidden={!isMobile}>
+            <li>
+              {' '}
+              <div className='mobile-icon'>
+                <BsFillPersonFill />
+              </div>
+            </li>
+          </div>
         </ul>
         {openDropdown === 'Women' && (
           <ul className='dropdown'>
@@ -115,10 +134,7 @@ const Navbar = () => {
             <li>Other</li>
           </ul>
         )}
-        {openDropdown === 'Green' && (
-          <ul className='dropdown'>
-          </ul>
-        )}
+        {openDropdown === 'Green' && <ul className='dropdown'></ul>}
       </div>
     </>
   )
