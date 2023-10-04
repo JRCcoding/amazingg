@@ -8,6 +8,7 @@ nav {
     height: 80px;
     background: white;
     padding-top: 1%;
+    width: 100vw;
 }
 
 
@@ -45,16 +46,20 @@ nav {
     nav {
         flex-direction: column;
         margin-top: 15%;
+        width: 100vw;
     }
     .title {
-        width: 80vw;
-        margin-right: 6.5%;
+        width: 90vw;
     }
     .search-container {
-        scale: .6;
+        margin-right: auto;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .search-bar {
-        margin-left: -2.5%;
+        width: 80vw;
     }
     .links-list {
         font-size: .75rem;
@@ -62,6 +67,7 @@ nav {
         padding-left: 0;
         gap: 20px;
         margin-right: 5%;
+        width: 100vw;
     }
 }
 
@@ -120,12 +126,12 @@ li:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 500px;
+    width: 100vw;
     margin: 0 auto;
 }
 .carousel-image {
-    width: auto;
-    max-height: 500px;
+    width: 100vw;
+    max-height: 450px;
     margin: 0 auto;
     justify-content: center;
     display: block;
