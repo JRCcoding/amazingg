@@ -78,8 +78,6 @@ li:hover {
 }
 
 .dropdown {
-    position: absolute;
-    width: 100%;
     z-index: 10000;
     background-color: black;
     color: white;
@@ -145,5 +143,8 @@ li:hover {
         gap: 20px;
         margin-right: 5%;
         width: 100vw;
+    }
+    .dropdown {
+        margin-top: -5%;
     }
 }
