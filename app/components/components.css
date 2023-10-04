@@ -89,6 +89,9 @@ li:hover {
     justify-content: space-around;
     border-top: 1px solid var(--off-orange);
 }
+.dropdown li {
+    text-align: center;
+}
 .dropdown li:hover {
     scale: 1;
 }
@@ -146,5 +149,29 @@ li:hover {
     }
     .dropdown {
         margin-top: -5%;
+        /* gap: 15px; */
+    }
+    .dropdown li {
+        font-size: .75rem;
     }
 }
+.dropdown {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .dropdown li:not(:last-child) {
+    margin-right: 10px; /* Adjust spacing as needed */
+    padding-right: 10px; /* Adjust spacing as needed */
+    border-right: 1px solid white; /* Add a border as the divider */
+  }
+  
+  /* To remove the divider from the last item */
+  .dropdown li:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+  }

@@ -93,45 +93,45 @@ const Navbar = () => {
         </ul>
         {openDropdown === 'Women' && (
           <ul className='dropdown'>
-            <li>Tops</li>
-            <li>Bottoms</li>
-            <li>Outfits</li>
-            <li>Shoes</li>
-            <li>Jewelry</li>
+            <li className='dropdown-item'>Tops</li>
+            <li className='dropdown-item'>Bottoms</li>
+            <li className='dropdown-item'>Outfits</li>
+            <li className='dropdown-item'>Shoes</li>
+            <li className='dropdown-item'>Jewelry</li>
           </ul>
         )}
         {openDropdown === 'Men' && (
           <ul className='dropdown'>
-            <li>Tops</li>
-            <li>Bottoms</li>
-            <li>Outfits</li>
-            <li>Shoes</li>
-            <li>Accessories</li>
+            <li className='dropdown-item'>Tops</li>
+            <li className='dropdown-item'>Bottoms</li>
+            <li className='dropdown-item'>Outfits</li>
+            <li className='dropdown-item'>Shoes</li>
+            <li className='dropdown-item'>Accessories</li>
           </ul>
         )}
         {openDropdown === 'Jewelry' && (
           <ul className='dropdown'>
-            <li>Mens</li>
-            <li>Womens</li>
-            <li>Children</li>
+            <li className='dropdown-item'>Mens</li>
+            <li className='dropdown-item'>Womens</li>
+            <li className='dropdown-item'>Children</li>
           </ul>
         )}
         {openDropdown === 'Sports' && (
           <ul className='dropdown'>
-            <li>Baseball</li>
-            <li>Football</li>
-            <li>Basketball</li>
-            <li>Volleyball</li>
-            <li>Tennis</li>
+            <li className='dropdown-item'>Baseball</li>
+            <li className='dropdown-item'>Football</li>
+            <li className='dropdown-item'>Basketball</li>
+            <li className='dropdown-item'>Volleyball</li>
+            <li className='dropdown-item'>Tennis</li>
           </ul>
         )}
         {openDropdown === 'Tech' && (
           <ul className='dropdown'>
-            <li>Gadgets</li>
-            <li>Chargers</li>
-            <li>Screens</li>
-            <li>Tablets</li>
-            <li>Other</li>
+            <li className='dropdown-item'>Gadgets</li>
+            <li className='dropdown-item'>Chargers</li>
+            <li className='dropdown-item'>Screens</li>
+            <li className='dropdown-item'>Tablets</li>
+            <li className='dropdown-item'>Other</li>
           </ul>
         )}
         {openDropdown === 'Green' && <ul className='dropdown'></ul>}
