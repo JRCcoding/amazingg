@@ -25,6 +25,7 @@ const Navbar = () => {
   }, [])
   const handleSignOut = async () => {
     await auth.signOut()
+    window.location.reload()
   }
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -192,6 +193,9 @@ const Navbar = () => {
         {openDropdown === 'Profile' && (
           <ul className='dropdown'>
             <li className='dropdown-item'>Orders</li>
+            <li className='dropdown-item' onClick={handleSignOut}>
+              Logout
+            </li>
           </ul>
         )}
       </div>

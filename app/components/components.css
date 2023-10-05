@@ -85,7 +85,7 @@ li:hover {
     background-color: black;
     color: white;
     margin-top: -1.2%;
-    padding: 0;
+    padding: 0 10%;
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -113,7 +113,7 @@ li:hover {
   }
 
   .photoURL {
-    border-radius: 50%;
+    border-radius: 100%;
     cursor: pointer;
   }
 
@@ -173,6 +173,7 @@ li:hover {
     .dropdown {
         margin-top: -5%;
         /* gap: 15px; */
+        padding: 0;
     }
     .dropdown li {
         font-size: .75rem;
