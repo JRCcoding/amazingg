@@ -9,12 +9,15 @@ nav {
     background: white;
     padding-top: 1%;
     width: 100vw;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 
 .title {
     /* scale: .5; */
     margin-top: -1%;
+    margin-bottom: 0;
 }
 
 
@@ -81,20 +84,39 @@ li:hover {
     z-index: 10000;
     background-color: black;
     color: white;
-    margin-top: -1%;
-    padding: 0 30%;
+    margin-top: -1.2%;
+    padding: 0;
     list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     border-top: 1px solid var(--off-orange);
+    align-items: center;
 }
+
 .dropdown li {
     text-align: center;
 }
 .dropdown li:hover {
     scale: 1;
 }
+.dropdown li:not(:last-child) {
+    margin-right: 10px; 
+    padding-right: 10px; 
+    border-right: 1px solid white;
+  }
+  
+  .dropdown li:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+  }
+
+  .photoURL {
+    border-radius: 50%;
+  }
+
+
 /* ProductCarousel.js */
 .carousel {
     display: flex;
@@ -155,23 +177,3 @@ li:hover {
         font-size: .75rem;
     }
 }
-.dropdown {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .dropdown li:not(:last-child) {
-    margin-right: 10px; /* Adjust spacing as needed */
-    padding-right: 10px; /* Adjust spacing as needed */
-    border-right: 1px solid white; /* Add a border as the divider */
-  }
-  
-  /* To remove the divider from the last item */
-  .dropdown li:last-child {
-    margin-right: 0;
-    padding-right: 0;
-    border-right: none;
-  }

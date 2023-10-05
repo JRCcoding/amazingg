@@ -4,6 +4,8 @@ import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 import './components.css'
 import { BsFillCartFill, BsFillPersonFill } from 'react-icons/bs'
+import { app, auth } from '../../firebase'
+import { useRouter } from 'next/navigation'
 
 const Navbar = () => {
   const [search, setSearch] = useState('Search...')
@@ -12,12 +14,32 @@ const Navbar = () => {
 
   const [isMobile, setIsMobile] = useState(false)
 
+  const [user, setUser] = useState(null)
+
+  const router = useRouter()
+
   useEffect(() => {
     if (window.innerWidth <= 501) {
       setIsMobile(true)
     }
   }, [])
+  const handleSignOut = async () => {
+    await auth.signOut()
+  }
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user)
+      console.log(user)
+    })
 
+    return () => {
+      unsubscribe()
+    }
+  }, [])
+
+  const handleLogin = () => {
+    router.push('/login')
+  }
   const handleDropdownToggle = (dropdownName) => {
     if (openDropdown === dropdownName) {
       setOpenDropdown(null)
@@ -78,16 +100,31 @@ const Navbar = () => {
           <li
             style={{ color: 'green', fontWeight: 'bold' }}
             onClick={() => handleDropdownToggle('Green')}
-            hidden={isMobile}
+            // hidden={isMobile}
           >
             GREEN
           </li>
           <div hidden={!isMobile}>
             <li>
               {' '}
-              <div className='mobile-icon'>
-                <BsFillPersonFill />
-              </div>
+              {!user ? (
+                <div className='mobile-icon'>
+                  <BsFillPersonFill onClick={handleLogin} />
+                </div>
+              ) : (
+                <div
+                  className='mobile-icon'
+                  onClick={() => handleDropdownToggle('Profile')}
+                >
+                  <Image
+                    src={user.photoURL}
+                    alt={user.name}
+                    height={17.5}
+                    width={17.5}
+                    className='photoURL'
+                  />
+                </div>
+              )}
             </li>
           </div>
         </ul>
@@ -134,7 +171,18 @@ const Navbar = () => {
             <li className='dropdown-item'>Other</li>
           </ul>
         )}
-        {openDropdown === 'Green' && <ul className='dropdown'></ul>}
+        {openDropdown === 'Green' && (
+          <ul className='dropdown'>
+            <li className='dropdown-item'>Solar</li>
+            <li className='dropdown-item'>Green Cleaning</li>
+            <li className='dropdown-item'>Organic Farming</li>
+          </ul>
+        )}
+        {openDropdown === 'Profile' && (
+          <ul className='dropdown'>
+            <li className='dropdown-item'>Orders</li>
+          </ul>
+        )}
       </div>
     </>
   )

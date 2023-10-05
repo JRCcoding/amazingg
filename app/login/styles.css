@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    box-shadow: 1px 1px 10px var(--off-orange);
+    background-color: black;
+}
+
+.card {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-image {
+    height: auto;
+    width: 100vw;
+    margin: 0 auto;
+}
