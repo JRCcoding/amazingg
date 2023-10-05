@@ -114,6 +114,7 @@ li:hover {
 
   .photoURL {
     border-radius: 50%;
+    cursor: pointer;
   }
 
 

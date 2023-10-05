@@ -83,7 +83,18 @@ const Navbar = () => {
         </div>
         <div className='icons' hidden={isMobile}>
           <BsFillCartFill className='icon' />
-          <BsFillPersonFill className='icon' />
+          {!user ? (
+            <BsFillPersonFill className='icon' onClick={handleLogin} />
+          ) : (
+            <Image
+              src={user.photoURL}
+              alt={user.name}
+              height={17.5}
+              width={17.5}
+              className='photoURL'
+              onClick={() => handleDropdownToggle('Profile')}
+            />
+          )}
         </div>
       </nav>
       <div className='links-container'>
