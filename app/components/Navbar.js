@@ -22,15 +22,9 @@ const Navbar = () => {
     if (window.innerWidth <= 501) {
       setIsMobile(true)
     }
-  }, [])
-  const handleSignOut = async () => {
-    await auth.signOut()
-    window.location.reload()
-  }
-  useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user)
-      console.log(user)
+      // console.log(user)
     })
 
     return () => {
@@ -38,9 +32,17 @@ const Navbar = () => {
     }
   }, [])
 
+  /* USER FUNCTIONS */
+  const handleSignOut = async () => {
+    await auth.signOut()
+    window.location.reload()
+  }
+
   const handleLogin = () => {
     router.push('/login')
   }
+
+  /* NAVBAR FUNCTIONS */
   const handleDropdownToggle = (dropdownName) => {
     if (openDropdown === dropdownName) {
       setOpenDropdown(null)
@@ -49,6 +51,7 @@ const Navbar = () => {
     }
   }
 
+  /* SEARCH FUNCTIONS */
   const handleInputFocus = () => {
     if (search === 'Search...') {
       setSearch('')

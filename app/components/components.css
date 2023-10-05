@@ -42,8 +42,7 @@ nav {
     gap: 100px;
     height: 50px;
     background-color: black;
-    border-bottom: 1px solid var(--off-orange)
-
+    border-bottom: 1px solid var(--off-orange);
 }
 
 
