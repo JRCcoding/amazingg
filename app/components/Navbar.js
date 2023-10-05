@@ -63,6 +63,12 @@ const Navbar = () => {
       setSearch('Search...')
     }
   }
+  const [isHome, setIsHome] = useState(false)
+  useEffect(() => {
+    if (window.location.pathname === '/') {
+      setIsHome(true)
+    }
+  }, [])
   return (
     <>
       <nav>
@@ -103,7 +109,10 @@ const Navbar = () => {
       </nav>
       <div className='links-container'>
         <ul className='links-list'>
-          <li onClick={() => handleDropdownToggle(null)} hidden={isMobile}>
+          <li
+            onClick={() => handleDropdownToggle(null)}
+            hidden={isMobile || isHome}
+          >
             Home
           </li>
           <li onClick={() => handleDropdownToggle('Women')}>Women</li>
