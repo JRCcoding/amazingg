@@ -82,13 +82,14 @@ const Navbar = () => {
 
         <div className='search-container'>
           <input
-            type='text'
+            type='search'
             name='search'
             value={search}
             defaultValue={search}
             className='search-bar'
             onFocus={handleInputFocus}
             onBlur={handleInputAbort}
+            autoComplete='off'
           />
         </div>
         <div className='icons' hidden={isMobile}>

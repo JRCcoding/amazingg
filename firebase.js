@@ -21,7 +21,7 @@ export const db = getFirestore(app)
 export const auth = getAuth(app)
 
 export const firebaseUIConfig = {
-  signInFlow: 'popup',
+  signInFlow: 'redirect',
   signInSuccessUrl: '/',
   // tosUrl: '/terms-of-service',
   // privacyPolicyUrl: '/privacy-policy',

@@ -9,4 +9,5 @@
 }
 
 body {
+  user-select: none;
 }
