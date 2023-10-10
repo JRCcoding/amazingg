@@ -23,8 +23,8 @@ export const auth = getAuth(app)
 export const firebaseUIConfig = {
   signInFlow: 'redirect',
   signInSuccessUrl: '/',
-  // tosUrl: '/terms-of-service',
-  // privacyPolicyUrl: '/privacy-policy',
+  tosUrl: '/amazinggtos.txt',
+  privacyPolicyUrl: '/amazinggpp.txt',
   signInOptions: [
     EmailAuthProvider.PROVIDER_ID,
     GoogleAuthProvider.PROVIDER_ID,
