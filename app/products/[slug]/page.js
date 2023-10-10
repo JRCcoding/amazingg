@@ -65,21 +65,30 @@ const Page = () => {
   return (
     <main>
       <Navbar />
-      <div>{product.title}</div>
-      <div className='carousel'>
-        <Carousel>
-          {product.images &&
-            product.images.map((image, index) => (
-              <Carousel.Item key={index} className='carousel-item'>
-                <img
-                  src={image}
-                  alt={product.title}
-                  className='carousel-image'
-                />
-              </Carousel.Item>
-            ))}
-        </Carousel>
-      </div>
+      {product ? (
+        <div className='product-container'>
+          <div className='product-title'>{product.title}</div>
+          <div className='carousel'>
+            <Carousel>
+              {product.images &&
+                product.images.map((image, index) => (
+                  <Carousel.Item key={index} className='carousel-item'>
+                    <img
+                      src={image}
+                      alt={product.title}
+                      className='carousel-image'
+                    />
+                  </Carousel.Item>
+                ))}
+            </Carousel>
+          </div>
+          <button type='button' className='button'>
+            Add to Cart
+          </button>
+        </div>
+      ) : (
+        <>Loading...</>
+      )}
     </main>
   )
 }

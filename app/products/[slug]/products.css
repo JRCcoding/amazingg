@@ -1,3 +1,16 @@
+.product-container {
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+.product-title {
+    text-align: center;
+    font-size: 2rem;
+}
 .carousel {
     display: flex;
     justify-content: center;
@@ -12,4 +25,13 @@
     display: block;
     object-fit: cover;
     transition: transform 0.5 ease;
+}
+.button {
+    background-color: black;
+    color: white;
+    border-radius: 0;
+    border: none;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
