@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
@@ -5,6 +6,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../../../firebase'
 import './products.css'
 import Navbar from '@/app/components/Navbar'
+import Carousel from 'react-bootstrap/Carousel'
 const Page = () => {
   const router = useRouter()
   const currentURL = typeof window !== 'undefined' ? window.location.href : ''
@@ -51,11 +53,7 @@ const Page = () => {
       if (productFailed) {
         const productsRef = collection(db, 'products')
         const querySnapshot = await getDocs(
-          query(
-            productsRef,
-            where('title', '==', productURL)
-            // limit(1) // Limit the query to retrieve only one result
-          )
+          query(productsRef, where('title', '==', productURL))
         )
         const productData = querySnapshot.docs[0].data()
 
@@ -68,6 +66,20 @@ const Page = () => {
     <main>
       <Navbar />
       <div>{product.title}</div>
+      <div className='carousel'>
+        <Carousel>
+          {product.images &&
+            product.images.map((image, index) => (
+              <Carousel.Item key={index} className='carousel-item'>
+                <img
+                  src={image}
+                  alt={product.title}
+                  className='carousel-image'
+                />
+              </Carousel.Item>
+            ))}
+        </Carousel>
+      </div>
     </main>
   )
 }

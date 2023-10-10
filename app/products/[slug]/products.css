@@ -1,0 +1,15 @@
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+.carousel-image {
+    width: auto;
+    max-height: 500px;
+    margin: 0 auto;
+    justify-content: center;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.5 ease;
+}
