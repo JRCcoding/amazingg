@@ -4,8 +4,9 @@ import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 import './components.css'
 import { BsFillCartFill, BsFillPersonFill } from 'react-icons/bs'
-import { app, auth } from '../../firebase'
+import { db, auth } from '../../firebase'
 import { useRouter } from 'next/navigation'
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
 
 const Navbar = () => {
   const [search, setSearch] = useState('Search...')
@@ -22,9 +23,40 @@ const Navbar = () => {
     if (window.innerWidth <= 501) {
       setIsMobile(true)
     }
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setUser(user)
-      // console.log(user)
+      if (user) {
+        // Check if the user already exists in the database based on the "id" property
+        const usersRef = collection(db, 'users')
+        const querySnapshot = await getDocs(
+          query(usersRef, where('id', '==', user.uid))
+        )
+
+        if (querySnapshot.empty) {
+          // User doesn't exist in the database, so create a new record
+          const timestamp = new Date()
+
+          try {
+            await addDoc(usersRef, {
+              id: user.uid,
+              name: user.displayName,
+              email: user.email,
+              phoneNumber: user.phoneNumber || null,
+              photoURL: user.photoURL,
+              createdAt: timestamp.toLocaleString(),
+            })
+            console.log('USER created.')
+          } catch (error) {
+            console.error(`Error creating USER in Firebase: ${error}`)
+          }
+        } else {
+          const usersRef = collection(db, 'users')
+          const snapshot = await getDocs(
+            query(usersRef, where('id', '==', user.uid))
+          )
+          setUser(snapshot.docs[0].data())
+        }
+      }
     })
 
     return () => {
@@ -78,6 +110,7 @@ const Navbar = () => {
           className='title'
           width={500}
           height={150}
+          onClick={() => router.push('/')}
         />
 
         <div className='search-container'>
@@ -92,27 +125,15 @@ const Navbar = () => {
             autoComplete='off'
           />
         </div>
-        <div className='icons' hidden={isMobile}>
-          <BsFillCartFill className='icon' />
-          {!user ? (
-            <BsFillPersonFill className='icon' onClick={handleLogin} />
-          ) : (
-            <Image
-              src={user.photoURL}
-              alt={user.name}
-              height={17.5}
-              width={17.5}
-              className='photoURL'
-              onClick={() => handleDropdownToggle('Profile')}
-            />
-          )}
-        </div>
       </nav>
       <div className='links-container'>
         <ul className='links-list'>
           <li
-            onClick={() => handleDropdownToggle(null)}
-            hidden={isMobile || isHome}
+            onClick={() => {
+              handleDropdownToggle(null)
+              router.push('/')
+            }}
+            hidden={isHome}
           >
             Home
           </li>
@@ -129,7 +150,7 @@ const Navbar = () => {
           >
             GREEN
           </li>
-          <div hidden={!isMobile}>
+          <div>
             <li>
               {' '}
               {!user ? (
@@ -205,6 +226,9 @@ const Navbar = () => {
         )}
         {openDropdown === 'Profile' && (
           <ul className='dropdown'>
+            <li className='dropdown-item' onClick={() => router.push('/cart')}>
+              Cart
+            </li>
             <li className='dropdown-item'>Orders</li>
             <li className='dropdown-item' onClick={handleSignOut}>
               Logout
