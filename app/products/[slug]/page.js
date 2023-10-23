@@ -62,6 +62,43 @@ const Page = () => {
       setProductFoo()
     }
   }, [])
+
+  const [qty, setQty] = useState(1)
+  const addToCart = () => {
+    const cartItem = {
+      product,
+      qty,
+    }
+
+    // Retrieve the existing cart data from localStorage
+    const existingCartDataString = localStorage.getItem('cart')
+    let existingCartData = []
+
+    // Check if there's existing cart data
+    if (existingCartDataString) {
+      // Parse the existing cart data from JSON string to an array
+      existingCartData = JSON.parse(existingCartDataString)
+    }
+
+    // Make sure existingCartData is an array (initialize as an empty array if it's not)
+    if (!Array.isArray(existingCartData)) {
+      existingCartData = []
+    }
+
+    // Add the new item to the cart
+    existingCartData.push(cartItem)
+
+    // Convert the updated cart data (array) back to a JSON string
+    const updatedCartDataString = JSON.stringify(existingCartData)
+
+    // Store the updated cart data in localStorage
+    localStorage.setItem('cart', updatedCartDataString)
+
+    // Now you have the updated cart data in localStorage
+    console.log('Updated Cart:', existingCartData)
+    router.push('/cart')
+  }
+
   return (
     <main>
       <Navbar />
@@ -82,7 +119,18 @@ const Page = () => {
                 ))}
             </Carousel>
           </div>
-          <button type='button' className='button'>
+          <select
+            className='qty-dropdown'
+            value={qty}
+            onChange={(e) => setQty(e.target.value)}
+          >
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
+          </select>
+          <button type='button' className='button' onClick={addToCart}>
             Add to Cart
           </button>
         </div>

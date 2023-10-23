@@ -93,6 +93,13 @@ li:hover {
     border-top: 1px solid var(--off-orange);
     align-items: center;
 }
+.qty-dropdown {
+    background-color: black;
+    color: white;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .dropdown li {
     text-align: center;
@@ -115,6 +122,7 @@ li:hover {
   .photoURL {
     border-radius: 100%;
     cursor: pointer;
+    margin-left: 250%;
   }
 
 

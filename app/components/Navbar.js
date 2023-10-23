@@ -76,11 +76,11 @@ const Navbar = () => {
 
   /* NAVBAR FUNCTIONS */
   const handleDropdownToggle = (dropdownName) => {
-    if (openDropdown === dropdownName) {
-      setOpenDropdown(null)
-    } else {
-      setOpenDropdown(dropdownName)
-    }
+    // if (openDropdown === dropdownName) {
+    //   setOpenDropdown(null)
+    // } else {
+    //   setOpenDropdown(dropdownName)
+    // }
   }
 
   /* SEARCH FUNCTIONS */
@@ -133,15 +133,14 @@ const Navbar = () => {
               handleDropdownToggle(null)
               router.push('/')
             }}
-            hidden={isHome}
           >
             Home
           </li>
-          <li onClick={() => handleDropdownToggle('Women')}>Women</li>
+          {/* <li onClick={() => handleDropdownToggle('Women')}>Women</li>
 
           <li onClick={() => handleDropdownToggle('Men')}>Men</li>
-          <li onClick={() => handleDropdownToggle('Jewelry')}>Jewelry</li>
-          <li onClick={() => handleDropdownToggle('Sports')}>Sports</li>
+          <li onClick={() => handleDropdownToggle('Kids')}>Kids</li> */}
+          {/* <li onClick={() => handleDropdownToggle('Sports')}>Sports</li>
           <li onClick={() => handleDropdownToggle('Tech')}>Tech</li>
           <li
             style={{ color: 'green', fontWeight: 'bold' }}
@@ -149,7 +148,9 @@ const Navbar = () => {
             // hidden={isMobile}
           >
             GREEN
-          </li>
+          </li> */}
+          <li onClick={() => router.push('/categories/Clothing')}>Clothing</li>
+          <li onClick={() => router.push('/categories/Tech')}>Tech</li>
           <div>
             <li>
               {' '}
@@ -174,7 +175,7 @@ const Navbar = () => {
             </li>
           </div>
         </ul>
-        {openDropdown === 'Women' && (
+        {/* {openDropdown === 'Women' && (
           <ul className='dropdown'>
             <li className='dropdown-item'>Tops</li>
             <li className='dropdown-item'>Bottoms</li>
@@ -224,6 +225,20 @@ const Navbar = () => {
             <li className='dropdown-item'>Organic Farming</li>
           </ul>
         )}
+        {openDropdown === 'Clothing' && (
+          <ul className='dropdown'>
+            <li className='dropdown-item'>Men</li>
+            <li className='dropdown-item'>Women</li>
+            <li className='dropdown-item'>Kids</li>
+          </ul>
+        )}
+        {openDropdown === 'Other' && (
+          <ul className='dropdown'>
+            <li className='dropdown-item'>Toys</li>
+            <li className='dropdown-item'>Green Cleaning</li>
+            <li className='dropdown-item'>Organic Farming</li>
+          </ul>
+        )} */}
         {openDropdown === 'Profile' && (
           <ul className='dropdown'>
             <li className='dropdown-item' onClick={() => router.push('/cart')}>
