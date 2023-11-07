@@ -1,7 +1,9 @@
 import React from 'react'
 import { Image } from 'react-bootstrap'
+import { useRouter } from 'next/navigation'
 
 const ProductsCard = ({ products }) => {
+  const router = useRouter()
   return (
     <div
       style={{
@@ -12,7 +14,10 @@ const ProductsCard = ({ products }) => {
     >
       {products &&
         products.map((product, index) => (
-          <div key={index}>
+          <div
+            key={index}
+            onClick={() => router.push(`/products/${product.title}`)}
+          >
             <h3>{product.title}</h3>
             <Image
               src={product.images[0]}

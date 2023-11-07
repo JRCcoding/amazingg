@@ -76,11 +76,11 @@ const Navbar = () => {
 
   /* NAVBAR FUNCTIONS */
   const handleDropdownToggle = (dropdownName) => {
-    // if (openDropdown === dropdownName) {
-    //   setOpenDropdown(null)
-    // } else {
-    //   setOpenDropdown(dropdownName)
-    // }
+    if (openDropdown === dropdownName) {
+      setOpenDropdown(null)
+    } else {
+      setOpenDropdown(dropdownName)
+    }
   }
 
   /* SEARCH FUNCTIONS */

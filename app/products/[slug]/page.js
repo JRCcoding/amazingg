@@ -16,6 +16,8 @@ const Page = () => {
   const productURL = pathSegments[pathSegments.length - 1].replace(/%20/g, ' ')
   const [product, setProduct] = useState([])
   const [productFailed, setProductFailed] = useState(false)
+  const [showInfo, setShowInfo] = useState(false)
+  const [color, setColor] = useState('')
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -47,21 +49,6 @@ const Page = () => {
 
     fetchProduct()
   }, [productURL])
-
-  useEffect(() => {
-    const setProductFoo = async () => {
-      if (productFailed) {
-        const productsRef = collection(db, 'products')
-        const querySnapshot = await getDocs(
-          query(productsRef, where('title', '==', productURL))
-        )
-        const productData = querySnapshot.docs[0].data()
-
-        setProduct(productData)
-      }
-      setProductFoo()
-    }
-  }, [])
 
   const [qty, setQty] = useState(1)
   const addToCart = () => {
@@ -119,6 +106,59 @@ const Page = () => {
                 ))}
             </Carousel>
           </div>
+          <h1 style={{ textAlign: 'center' }}>${product.price}</h1>
+          <button
+            className='button'
+            type='button'
+            onClick={() => setShowInfo(!showInfo)}
+          >
+            {showInfo ? 'Hide Details' : 'Show Details'}
+          </button>
+          <div hidden={!showInfo}>
+            {product?.attributes &&
+              Object.keys(product.attributes)
+                .sort()
+                .map((key, index) => (
+                  <ul
+                    key={index}
+                    style={{
+                      listStyle: 'none',
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <li
+                      style={{
+                        color: 'black',
+                      }}
+                      onMouseOver={(e) => {
+                        e.target.style.color = 'black'
+                        e.target.style.scale = '1'
+                      }}
+                    >
+                      {key.toUpperCase()}:{' '}
+                      {Array.isArray(product.attributes[key])
+                        ? product.attributes[key].join(' / ')
+                        : product.attributes[key]}
+                    </li>
+                  </ul>
+                ))}
+          </div>
+          {product.attributes.colors && (
+            <select
+              className='qty-dropdown'
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+              style={{ textAlign: 'center' }}
+            >
+              {product?.attributes?.colors?.map((color, index) => (
+                <option key={index} value={color}>
+                  {color.charAt(0).toUpperCase() + color.slice(1)}
+                </option>
+              ))}
+            </select>
+          )}
+
           <select
             className='qty-dropdown'
             value={qty}
@@ -130,7 +170,12 @@ const Page = () => {
               </option>
             ))}
           </select>
-          <button type='button' className='button' onClick={addToCart}>
+          <button
+            type='button'
+            className='button'
+            onClick={addToCart}
+            style={{ marginBottom: 50 }}
+          >
             Add to Cart
           </button>
         </div>
