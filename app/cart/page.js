@@ -3,10 +3,13 @@ import React, { useState, useEffect } from 'react'
 import './cart.css'
 import Navbar from '../components/Navbar'
 import '../components/components.css'
+import { PayPalButton } from 'react-paypal-button-v2'
 
 const Page = () => {
   const [cart, setCart] = useState(null)
   const [cartTotal, setCartTotal] = useState(null)
+  const [hideCheckout, setHideCheckout] = useState(true)
+
   const taxRate = 0.0825 // Set your desired tax rate (10% in this example)
 
   useEffect(() => {
@@ -94,6 +97,37 @@ const Page = () => {
             </div>
           </div>
         )}
+      </div>
+      {hideCheckout === true ||
+        (cartTotal?.totalWithTax !== 0.0 && (
+          <button
+            style={{
+              background: 'black',
+              color: 'white',
+              borderRadius: 0,
+              border: 'none',
+              width: '100%',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            }}
+            onClick={() => setHideCheckout(!hideCheckout)}
+          >
+            Checkout
+          </button>
+        ))}
+      <div
+        hidden={hideCheckout}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <form>
+          <p>Get shipping information here...</p>
+        </form>
+        <PayPalButton price={cartTotal} />
       </div>
     </main>
   )

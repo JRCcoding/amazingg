@@ -144,7 +144,7 @@ const Page = () => {
                   </ul>
                 ))}
           </div>
-          {product.attributes.colors && (
+          {product?.attributes?.colors && (
             <select
               className='qty-dropdown'
               value={color}
